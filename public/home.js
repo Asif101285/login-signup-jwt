@@ -1,18 +1,36 @@
+const form = document.querySelector("#form");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = document.querySelector("#email").value;
+  const password = document.querySelector("#password").value;
 
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-
-  import { getAuth } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
-
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyApigH_iFeOcm3rBKFnXQPdFtVvHfk3h80",
-    authDomain: "thread-clone-3f95d.firebaseapp.com",
-    projectId: "thread-clone-3f95d",
-    storageBucket: "thread-clone-3f95d.appspot.com",
-    messagingSenderId: "238217192167",
-    appId: "1:238217192167:web:4e779c8c016408e226f842"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+  try {
+    const response = await axios.post(
+      "api/v1/login",
+      {
+        email: email,
+        password: password,
+      },
+      { withCredentials: true }
+    );
+    if (response.status === 200) {
+      displayAlert(response.data.message, "green");
+      setTimeout(() => {
+        window.location.assign("/home.html");
+      }, 2000);
+    }
+  } catch (error) {
+    console.log(error);
+    displayAlert(error.response.data.message, "red");
+  }
+});
+const alertBox = document.querySelector("#alertBox");
+const displayAlert = (txt, clss) => {
+  alertBox.textContent = txt;
+  alertBox.classList.add(clss);
+  // remove alert
+  setTimeout(() => {
+    alertBox.textContent = "";
+    alertBox.classList.remove(clss);
+  }, 2000);
+};

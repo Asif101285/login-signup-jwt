@@ -1,18 +1,42 @@
+const form = document.querySelector("#signupForm");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const firstName = document.querySelector("#firstName").value;
+  const lastName = document.querySelector("#lastName").value;
+  const email = document.querySelector("#email").value;
+  const password = document.querySelector("#password").value;
+  const confirmPassword = document.querySelector("#confirmPassword").value;
 
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyApigH_iFeOcm3rBKFnXQPdFtVvHfk3h80",
-    authDomain: "thread-clone-3f95d.firebaseapp.com",
-    projectId: "thread-clone-3f95d",
-    storageBucket: "thread-clone-3f95d.appspot.com",
-    messagingSenderId: "238217192167",
-    appId: "1:238217192167:web:4e779c8c016408e226f842"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+  if (password === confirmPassword) {
+    axios
+      .post("/api/v1/signup", {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+      })
+      .then(function (response) {
+        console.log(response.data);
+        displayAlert("Signup Successfully", "green");
+        setTimeout(() => {
+          window.location.replace("index.html");
+        }, 2000);
+      })
+      .catch(function (error) {
+        console.log(error);
+        displayAlert(error.response.data.message, "red");
+      });
+  } else {
+    displayAlert("Password must be same", "black");
+  }
+});
+const alertBox = document.querySelector("#alertBox");
+const displayAlert = (txt, clss) => {
+  alertBox.textContent = txt;
+  alertBox.classList.add(clss);
+  // remove alert
+  setTimeout(() => {
+    alertBox.textContent = "";
+    alertBox.classList.remove(clss);
+  }, 2000);
+};
