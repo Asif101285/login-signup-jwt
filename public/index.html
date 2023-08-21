@@ -3,52 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sign up</title>
-    <link rel="stylesheet" href="style.css">
-
-
-
-
-
+    <title>login signup with jwt</title>
+    <link rel="stylesheet" href="signup.css">
 </head>
 <body>
-    
-   <div class="signup">
-       <!--email-->
-       <form class="email" id="form">
-           <label for="email">Email</label>
-           <input type="email"name="email" id="email"
-            placeholder="abc@gmail.com"
-            required>
 
-       
-       <!--password-->
-       <div class="password">
-        <label for="password">Password</label>
-        <input type="password"
-        name="password"
-        id="password"
-        placeholder="enter your password"
-        minlength="6"
-        required>
+    <navbar class="nav">
+        <div class="">
+            <h1>login signup with jwt</h1>
+        </div>
+    </navbar>
 
-       </div>
 
-       <!--sign up button-->
-       <div class="inputBox">
-        <input type="submit" value="signup" id="btn">
-      </div>
-       </form>
 
-       <div class="group">
-        <p>Already Have Account?</p>
-        <a href="./login.html">Sign In</a>
-      </div>
+
+    <div class="signup">
+        <!--email-->
+        <form class="email" id="form">
+            <label for="">First Name</label>
+            <input type="text" id="first name"
+            placeholder="enter your first name"
+            minlength="3"
+            maxlength="20">
+
+            <label for="">Last Name</label>
+            <input type="text" id="last name"
+            placeholder="enter your last name"
+            minlength="1"
+            maxlength="20">
+            <label for="email">Email</label>
+            <input type="email"name="email" id="email"
+             placeholder="abc@gmail.com"
+             required>
+ 
         
-   </div>
+        <!--password-->
+        <div class="password">
+         <label for="password">Password</label>
+         <input type="password"
+         name="password"
+         id="password"
+         placeholder="enter your password"
+         minlength="8"
+         required>
+ 
+        </div>
 
-   <script type="module" src="app.js"></script>
-
-
+        <div class="password">
+            <label for="password">confirm Password</label>
+            <input type="password"
+            name="password"
+            id="confirmpassword"
+            placeholder="enter your password"
+            minlength="8"
+            required>
+    
+           </div>
+ 
+        <!--sign up button-->
+        <div class="inputBox">
+         <input type="submit" value="signup" id="btn">
+       </div>
+        </form>
+ 
+        <div class="group">
+         <p>Already Have Account?</p>
+         <a href="./login.html">Login</a>
+       </div>
+         
+    </div>
+ 
+    <script type="module" src="signup.js"></script>
+    
 </body>
 </html>
